@@ -6,23 +6,23 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/splinedist-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/splinedist-{{ version }}.tar.gz
   sha256: 72c9f65ed0a11c8f79eb5d1c493d4efd2b7d5ce110658102f2ce11f4f40900b3
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - numpy
     - pip
-    - python >=3.8
+    - python {{ python_min }}
   run:
     - csbdeep >=0.6.3
     - opencv
-    - python >=3.8
+    - python >={{ python_min }}
     - stardist >=0.8.3
     - tensorflow
 
@@ -34,6 +34,7 @@ test:
     # - pip check  # Fails because of opencv-python-headless 
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/uhlmanngroup/splinedist
