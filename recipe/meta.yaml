@@ -31,7 +31,7 @@ test:
     - splinedist
   commands:
     - pip list
-    # - pip check  # Fails because of opencv-python-headless 
+    - pip check
   requires:
     - pip
     - python {{ python_min }}
